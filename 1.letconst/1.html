@@ -7,6 +7,7 @@
   <body>
 
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
   <script type="text/javascript">
     {
       let a = 10
@@ -17,6 +18,16 @@
     } catch (e) {
       console.log('a没有定义')
     }
-    
+
+    // es6 在块级作用域建议使用函数表达式声明函数
+    function f() { console.log('I am outside!') }
+    {
+      if (false) {
+        // 重复声明一次函数f
+        function f() { console.log('I am inside!') }
+      }
+      f()
+    }
+
   </script>
 </html>

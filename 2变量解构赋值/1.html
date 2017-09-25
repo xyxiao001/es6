@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>变量解构赋值</title>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
+    <script type="text/javascript">
+      'user strict'
+      {
+        let [a, b, c] = [1, 2, 3]
+        console.log(a, b, c)
+      }
+
+      {
+        let [a = 5] = []
+        let [b = 5] = ['']
+        console.log(a, b)
+      }
+
+      // 对象解构
+      // 对象的解构与数组有一个重要的不同。数组的元素是按次序排列的，
+      //变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。
+      {
+        let {foo, bar} = {foo: 'aaa', bar: 'bbb'}
+        console.log(foo, bar)
+      }
+    </script>
+  </body>
+</html>
