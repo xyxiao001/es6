@@ -7,6 +7,82 @@
   <body>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
     <script type="text/javascript">
+    function log(data) {
+      return console.log(`%c${data}`, 'color: red')
+    }
+
+    {
+      '\z' === 'z'  // true
+      '\172' === 'z' // true
+      '\x7A' === 'z' // true
+      '\u007A' === 'z' // true
+      '\u{7A}' === 'z' // true
+    }
+
+    {
+      let s1  = '𠮷'
+      let s2 = '吉'
+      console.log(s1.length, s2.length)
+    }
+
+    {
+      log('码点返回对应字符String.formCodePoint')
+      let s = String.fromCodePoint(0x20BB7)
+      console.log(s)
+    }
+
+    {
+      log('字符串遍历接口  for of')
+      //for of 最大的优点是可以识别大于0xFFFF的码点
+      let text = String.fromCodePoint(0x20BB7)
+      for (let i = 0; i < text.length; i++) {
+        console.log(text[i])
+      }
+
+      for (let i of text) {
+        console.log(i)
+      }
+    }
+
+    {
+      // includes()：返回布尔值，表示是否找到了参数字符串。
+      // startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。
+      // endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。
+      // 二个参数，表示开始搜索的位置。
+      // 使用第二个参数n时，endsWith的行为与其他两个方法有所不同。它针对前n个字符，而其他两个方法针对从第n个位置直到字符串结束。
+      var s = 'adsfagag'
+      console.log(s.includes('a'))
+      console.log(s.includes('a', 8))
+    }
+
+    {
+      log('repeat  重复生成')
+      var x = 'x'.repeat(5)
+      console.log(x)
+
+      log('字符串补全 padStart()，padEnd()')
+      var s1 = '5'.padStart(4, 0)
+      var s2 = '12'.padStart(4, 0)
+      console.log(s1, s2)
+
+      // 日期校验提醒
+      var s3 = '09-05'.padStart(10, 'YYYY-MM-DD')
+
+      var s4 = '15'.padEnd(11, 'x')
+      console.log(s3, s4)
+    }
+
+    {
+      log('模板字符串')
+      var name = '小明'
+      var age = 15
+      var x = function () {
+        return '天下是我的'
+      }
+
+      var s = `我的名字是${name}, 我今年${age}岁, 我最喜欢说${x()}`
+      console.log(s)
+    }
     </script>
   </body>
 </html>
