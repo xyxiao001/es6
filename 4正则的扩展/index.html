@@ -19,5 +19,24 @@
       let reg2 = new RegExp(/a/g, 'i')
       console.log(reg1, reg2)
     }
+
+    {
+      log('正则的方法')
+      log('match, replace, search, split')
+
+      log('u修饰符， 会正确处理四个字节的 UTF-16 编码')
+      let test1 = /^\uD83D/u.test('\uD83D\uDC2A')
+      let test2 = /^\uD83D/.test('\uD83D\uDC2A')
+      console.log(test1, test2)
+    }
+
+    {
+      log('具名匹配')
+      let s  = '1995-09-18'
+      // let reg = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/
+      let reg = /(\d{4})-(\d{2})-(\d{2})/
+      let match = reg.exec(s)
+      console.log(match)
+    }
   </script>
 </html>
