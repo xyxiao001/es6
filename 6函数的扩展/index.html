@@ -34,8 +34,89 @@
 
     {
       var f = v => v
-
       console.log(f(1))
+
+      var r = () => void console.log('没有返回值')
+      r()
+
+
+      let insert = (value) => ({
+        into: (array) => ({
+          after: (afterValue) => {
+            array.splice(array.indexOf(afterValue) + 1, 0, value)
+            return array
+          }
+        })
+      })
+
+      console.log(insert(2).into([1, 3]).after(1))
+    }
+
+    {
+      let a = {
+        id: 1,
+        name: 'a'
+      }
+
+      function b() {
+        console.log(this.id, this.name)
+      }
+      // b = a::b
+      b = b.bind(a)
+      b()
+    }
+
+    {
+      log('尾调用')
+      let a = data => b(data + 1)
+
+      let b = data => data + 2
+
+      console.log(a(1))
+    }
+
+    {
+      log('尾递归')
+      function factorial(n, total = 1) {
+        if (n === 1) return total
+        return factorial(n - 1, n * total)
+      }
+
+      console.log(factorial(5))
+
+      function Fibonacci(n, ac1 = 1, ac2 = 1) {
+        if (n <= 1) return ac2
+        return Fibonacci(n - 1, ac2, ac1 + ac2)
+      }
+
+      console.log(Fibonacci(1))
+      console.log(Fibonacci(100))
+    }
+
+    {
+      // 函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。
+      function currying(fn, n) {
+        return function (m) {
+          return fn.call(this, m, n)
+        }
+      }
+
+      function tailFactorial(n, total) {
+        if (n === 1) return total
+        return tailFactorial(n - 1, n * total)
+      }
+
+      let factorial = currying(tailFactorial, 1)
+
+      console.log(factorial(5))
+    }
+
+    {
+      try {
+        console.log(a)
+      } catch (e) {
+        console.log(e)
+      }
     }
   </script>
 </html>
