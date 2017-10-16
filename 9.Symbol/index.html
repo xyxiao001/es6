@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>symbol</title>
+  </head>
+  <body>
+
+  </body>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
+  <script type="text/javascript">
+    function log(data) {
+      return console.log(`%c${data}`, 'color: red')
+    }
+
+    {
+      let s = Symbol()
+      console.log(typeof s)
+
+      const obj = {
+        toString () {
+          return 'abc'
+        }
+      }
+
+      const sym = Symbol(obj)
+      console.log(sym)
+    }
+  </script>
+</html>
