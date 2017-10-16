@@ -64,5 +64,19 @@
       console.log(des)
       console.log(Object.getOwnPropertyDescriptors(obj))
     }
+
+    {
+      log('Null 传导运算符')
+
+      var obj = {
+        a: {
+          b: {
+            c: 1
+          }
+        }
+      }
+
+      // console.log(a?.b?.c || 2)
+    }
   </script>
 </html>
