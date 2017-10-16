@@ -40,7 +40,7 @@
 
     {
       log('Object.assign方法用于对象的合并')
-
+      // 浅拷贝
       var a = {
         a: 1
       }
@@ -51,6 +51,18 @@
 
       var x = Object.assign(a, b)
       console.log(x)
+    }
+
+    {
+      log('对象的描述')
+      var obj = {
+        a: 1,
+        b: 2
+      }
+
+      var des = Object.getOwnPropertyDescriptor(obj, 'a')
+      console.log(des)
+      console.log(Object.getOwnPropertyDescriptors(obj))
     }
   </script>
 </html>
