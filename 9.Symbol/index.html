@@ -26,5 +26,17 @@
       const sym = Symbol(obj)
       console.log(sym)
     }
+
+    {
+      log('Symbol 值作为对象属性名时，不能用点运算符。')
+
+      let a = Symbol('name')
+
+      let obj = {}
+
+      obj[a] = 'mike'
+
+      console.log(obj)
+    }
   </script>
 </html>
