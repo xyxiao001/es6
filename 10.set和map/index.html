@@ -12,5 +12,61 @@
     function log(data) {
       return console.log(`%c${data}`, 'color: red')
     }
+    {
+      log('Set 结构不会添加重复的值。由于两个空对象不相等，所以它们被视为两个值。')
+      let s = new Set()
+      var arr = [1, 2, 4, 1, 2, 4]
+      arr.forEach((v, i) => {
+        s.add(v)
+      })
+
+      console.log(s)
+      console.log([...s])
+    }
+
+    {
+      log('一行代码快速去重')
+      var arr = ['a', 'b', 'c', 'a', 'd', 'b']
+
+      console.log([...new Set(arr)])
+    }
+
+    {
+      log('对象可以重复添加。 不相等')
+      var a = {
+        x: 1
+      }
+
+      var b = {
+        x: 1
+      }
+
+      var c = new Set()
+
+      c.add(a)
+
+      c.add(b)
+
+      console.log(c)
+    }
+
+    {
+      // add(value)：添加某个值，返回Set结构本身。
+      // delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+      // has(value)：返回一个布尔值，表示该值是否为Set的成员。
+      // clear()：清除所有成员，没有返回值。
+      let s = new Set()
+      s.add(1).add(2).add(2)
+      console.log(s)
+      console.log(s.has(1))
+    }
+
+    {
+      log('WeakSet')
+      const a = [[1, 2], [3, 4]]
+
+      let ws = new WeakSet(a)
+      console.log(ws)
+    }
   </script>
 </html>
