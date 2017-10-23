@@ -91,8 +91,44 @@
     }
 
     {
-      log('apply')
-      
+      log('apply方法拦截函数的调用')
+      // var handler = {
+      //   apply (target, ctx, args) {
+      //     return Reflect.apply(...arguments)
+      //   }
+      // }
+
+      var target = () => 'I an the target'
+
+      var handler = {
+        apply () {
+          return 'I am proxy'
+        }
+      }
+
+      var p = new Proxy(target, handler)
+      console.log(p())
+    }
+
+    {
+      log('has方法用来拦截HasProperty操作，即判断对象是否具有某个属性时，这个方法会生效。典型的操作就是in运算符。')
+      var handler = {
+        has (target, key) {
+          if (key[0] === '_') {
+            return false
+          }
+          return key in target
+        }
+      }
+
+      var target = {
+        _prop: 'foo',
+        prop: 'foo'
+      }
+
+      var p = new Proxy(target, handler)
+      console.log('_prop' in p)
+      console.log('prop' in p)
     }
   </script>
 </html>
