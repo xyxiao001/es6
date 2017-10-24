@@ -45,11 +45,78 @@
     }
 
     {
-      let p {
+      let p = {
         a: 'a'
       }
 
-      
+      let handle = {
+        set(target, key, value, receiver) {
+          console.log('set ' + key)
+          Reflect.set(target, key, value, receiver)
+        },
+        defineProperty(target, key, attribute) {
+          console.log('defineProperty')
+          Reflect.defineProperty(target, key, attribute)
+        }
+      }
+
+      let obj = new Proxy(p, handle)
+
+      console.log(obj)
+
+      obj.a = 'A'
+
+      console.log(obj)
     }
+
+    {
+      log('Reflect.has()')
+
+      let obj = {
+        name: '123'
+      }
+
+      console.log(Reflect.has(obj, 'name'))
+    }
+
+    {
+      log('Reflect.deleteProperty方法等同于delete obj[name]，用于删除对象的属性。')
+
+      let obj = {
+        name: '123',
+        age: 10
+      }
+
+      Reflect.deleteProperty(obj, 'name')
+      console.log(obj)
+    }
+
+    // 实行观察者
+    const queuedObservers = new Set()
+
+    const observe = fn => queuedObservers.add(fn)
+
+    const observable = obj => new Proxy(obj, {set})
+
+    function set(target, key, value, receiver) {
+      const result = Reflect.set(target, key, value, receiver)
+      queuedObservers.forEach(observer => observer())
+      return result
+    }
+
+    let person = observable({
+      name: 'jack',
+      age: 24
+    })
+
+    function print() {
+      console.log(`${person.name}, ${person.age}`)
+    }
+
+    observe(print)
+
+    person.name = '李四'
+
+    person.name = '张三'
   </script>
 </html>
