@@ -29,11 +29,65 @@
 
     {
       log('PromiseAll')
-
       // var p = new Promise.all([p1, p2, p3])
 
       // 只有p1、p2、p3的状态都变成fulfilled，p的状态才会变成fulfilled，此时p1、p2、p3的返回值组成一个数组，传递给p的回调函数。
       // 如果作为参数的 Promise 实例，自己定义了catch方法，那么它一旦被rejected，并不会触发Promise.all()的catch方法。
+    }
+
+    {
+      log('Promise.race')
+      // 上面代码中，只要p1、p2、p3之中有一个实例率先改变状态，p的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给p的回调函数。
+      var p = Promise.race([
+        new Promise((reslove, reject) => {
+          setTimeout(reslove, 500)
+        })
+      ])
+
+      p.then(() => console.log('response'))
+      p.catch(error => console.log('error'))
+    }
+
+    {
+      log('有时需要将现有对象转为Promise对象，Promise.resolve方法就起到这个作用。')
+
+      setTimeout(() => console.log('three'), 0)
+
+      Promise.resolve().then(() => console.log('two'))
+
+      console.log('one')
+    }
+
+    {
+      // Promise对象的回调链，不管以then方法或catch方法结尾，要是最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。
+      // 因此，我们可以提供一个done方法，总是处于回调链的尾端，保证抛出任何可能出现的错误
+    }
+
+    {
+      // finally方法用于指定不管Promise对象最后状态如何，都会执行的操作。
+      // 它与done方法的最大区别，它接受一个普通的回调函数作为参数，该函数不管怎样都必须执行。
+    }
+
+    {
+      // promise加载图片例子
+      var load = (path) => {
+        return new Promise((reslove, reject) => {
+          let img = new Image
+          img.onload = reslove
+          img.onerror = reject
+          img.src = path
+        })
+      }
+
+      load('http://ofyaji162.bkt.clouddn.com/touxiang.jpg').then(() => {
+        console.log('图片1加载成功')
+      })
+
+      load('http://ofyaji162.bkt.clouddn.com/touxiang1.jpg').then(() => {
+        console.log('图片2加载成功')
+      }).catch((e) => {
+        console.log('图片2加载失败')
+      })
     }
   </script>
 </html>
