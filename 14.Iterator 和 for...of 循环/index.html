@@ -21,5 +21,33 @@
       console.log(iter.next())
       console.log(iter.next())
     }
+
+    {
+      log('for... of')
+      var arr = [1, 2, 3]
+
+      for (let v of arr) {
+        console.log(v)
+      }
+
+      // for...in循环读取键名，for...of循环读取键值
+      let obj = {}
+      obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr)
+      console.log(obj)
+      for(let v of obj) {
+        console.log(v)
+      }
+    }
+
+    {
+      var arr = [1, 2, 3, 4, 5]
+
+      for (let x of arr) {
+        if (x > 3){
+           break  
+        }
+        console.log(x)
+      }
+    }
   </script>
 </html>
