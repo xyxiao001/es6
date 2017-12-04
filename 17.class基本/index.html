@@ -5,7 +5,9 @@
     <title>class 基本</title>
   </head>
   <body>
-
+    <p id="test">
+      text
+    </p>
   </body>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
   <script type="text/javascript">
@@ -29,6 +31,60 @@
       console.log(a.toString())
       console.log(Point.prototype)
     }
-    
+
+    {
+      class Test {
+        constructor(element) {
+          this.element = element
+        }
+
+        get html () {
+          return this.element.innerHTML
+        }
+
+        set html (value) {
+          this.element.innerHTML = value
+        }
+      }
+
+      let test = new Test(document.querySelector('#test'))
+      console.log(test.html)
+      test.html = 123456
+      let des  = Object.getOwnPropertyDescriptor(
+        Test.prototype, 'html'
+      )
+      console.log(des)
+    }
+
+    {
+      // 静态方法 不会别继承
+      class TestStatic {
+        constructor () {
+
+        }
+
+        static hello () {
+          console.log(1)
+        }
+      }
+
+      TestStatic.hello()
+    }
+
+    {
+      class Foo {
+      }
+
+      Foo.prop = 3
+
+      class Bar extends Foo  {
+        constructor () {
+          // console.log(super)
+        }
+      }
+
+      new Bar()
+    }
+
   </script>
 </html>
