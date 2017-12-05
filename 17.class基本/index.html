@@ -73,17 +73,19 @@
 
     {
       class Foo {
+        speak () {
+          console.log('hello')
+        }
       }
 
       Foo.prop = 3
 
       class Bar extends Foo  {
-        constructor () {
-          // console.log(super)
-        }
+
       }
 
-      new Bar()
+      let bar = new Bar()
+      bar.speak()
     }
 
   </script>

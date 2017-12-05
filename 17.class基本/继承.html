@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>class继承</title>
+  </head>
+  <body>
+
+  </body>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script> -->
+  <script type="text/javascript">
+    function log(data) {
+      return console.log(`%c${data}`, 'color: red')
+    }
+    {
+      class Point {
+        constructor (x, y) {
+          this.x = x
+          this.y = y
+        }
+
+        static hello () {
+          console.log('hello')
+        }
+      }
+
+      class ColorPoint extends Point {
+        constructor (x, y, color) {
+          super(x, y)
+          this.color = color
+        }
+
+        toString () {
+          return this.color + '' + super.toString()
+        }
+      }
+
+      ColorPoint.hello()
+      let cp = new ColorPoint(10, 15, 'red')
+
+      console.log(cp)
+
+      // Object.getPrototypeOf方法可以用来从子类上获取父类。
+      Object.getPrototypeOf(ColorPoint)
+
+      // 通过super调用父类的方法时，方法内部的this指向子类。
+      // 如果super作为对象，用在静态方法之中，这时super将指向父类，而不是父类的原型对象。
+    }
+  </script>
+</html>
