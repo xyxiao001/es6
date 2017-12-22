@@ -103,3 +103,19 @@
 
   console.log(s)
 }
+
+{
+  class Animal {
+    name: string
+  }
+
+  class Dog extends Animal {
+    breed: string
+  }
+
+  interface NotOkay {
+    // [x: number]: Animal
+    //使用'string'索引，有时会得到Animal!
+    [x: string]: Dog
+  }
+}
