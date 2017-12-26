@@ -46,3 +46,43 @@ var __extends = (this && this.__extends) || (function () {
     dog.bark();
     dog.move(10);
 }
+{
+    var Animal = /** @class */ (function () {
+        function Animal(theName) {
+            this.name = theName;
+        }
+        Animal.prototype.move = function (distanceInMeters) {
+            if (distanceInMeters === void 0) { distanceInMeters = 0; }
+            console.log(this.name + " moved " + distanceInMeters + "m");
+        };
+        return Animal;
+    }());
+    var Snake = /** @class */ (function (_super) {
+        __extends(Snake, _super);
+        function Snake(name) {
+            return _super.call(this, name) || this;
+        }
+        Snake.prototype.move = function (distanceInMeters) {
+            if (distanceInMeters === void 0) { distanceInMeters = 5; }
+            console.log('Slithering...');
+            _super.prototype.move.call(this, distanceInMeters);
+        };
+        return Snake;
+    }(Animal));
+    var Horse = /** @class */ (function (_super) {
+        __extends(Horse, _super);
+        function Horse(name) {
+            return _super.call(this, name) || this;
+        }
+        Horse.prototype.move = function (distanceInMeters) {
+            if (distanceInMeters === void 0) { distanceInMeters = 45; }
+            console.log('Galloping...');
+            _super.prototype.move.call(this, distanceInMeters);
+        };
+        return Horse;
+    }(Animal));
+    var sam = new Snake('sammy the python');
+    var tom = new Horse('tommy thr Palomino');
+    sam.move();
+    tom.move(34);
+}
