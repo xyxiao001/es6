@@ -86,3 +86,22 @@ var __extends = (this && this.__extends) || (function () {
     sam.move();
     tom.move(34);
 }
+{
+    // 公共 私有修饰符
+    var Animal = /** @class */ (function () {
+        function Animal(theName) {
+            this.age = 10;
+            this.text = 'text';
+            this.name = theName;
+        }
+        Animal.prototype.move = function (distanceInMeters) {
+            console.log(this.name + " moved " + distanceInMeters + "m");
+        };
+        return Animal;
+    }());
+    var dog = new Animal('dog');
+    console.log(dog);
+    // 私有 不能直接访问
+    // console.log(dog.age)
+    // console.log(dog.text)
+}
