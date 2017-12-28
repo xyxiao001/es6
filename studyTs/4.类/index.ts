@@ -94,3 +94,8 @@
   // protected 可以在子类访问
   // console.log(dog.text)
 }
+
+
+{
+  // 抽象类
+}
