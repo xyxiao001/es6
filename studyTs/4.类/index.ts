@@ -97,5 +97,58 @@
 
 
 {
-  // 抽象类
+  // 抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。
+  abstract class animal {
+    abstract makeSound(): void
+    move(): void {
+      console.log('roaming the earch...')
+    }
+  }
+
+  abstract class Department {
+    constructor (public name: string) {
+    }
+
+    printName(): void {
+      console.log(`Department name: ${this.name}`)
+    }
+
+    abstract printMeeting(): void
+  }
+
+  class AccountingDepartment extends Department {
+    constructor () {
+      super('Accounting and Auditing')
+    }
+
+    printMeeting(): void {
+      console.log('The Accounting Department meets each Monday at 10am.')
+    }
+
+    generateReports(): void {
+      console.log('Generating accounting reports...')
+    }
+  }
+
+  let department: Department
+  console.log(department)
+  department = new AccountingDepartment()
+  console.log(department)
+  department.printName()
+  department.printMeeting()
+  // department.generateReports()
+  // 错误: 方法在声明的抽象类中不存在
+}
+
+{
+  class Greeter {
+    gretting: string
+    constructor(message: string) {
+      this.greeting = message
+    }
+
+    greet() {
+      return `hello ${this.greeting}`
+    }
+  }
 }

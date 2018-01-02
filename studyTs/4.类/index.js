@@ -103,5 +103,47 @@ var __extends = (this && this.__extends) || (function () {
     console.log(dog);
     // 私有 不能直接访问
     // console.log(dog.age)
+    // protected 可以在子类访问
     // console.log(dog.text)
+}
+{
+    // 抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。
+    var animal = /** @class */ (function () {
+        function animal() {
+        }
+        animal.prototype.move = function () {
+            console.log('roaming the earch...');
+        };
+        return animal;
+    }());
+    var Department = /** @class */ (function () {
+        function Department(name) {
+            this.name = name;
+        }
+        Department.prototype.printName = function () {
+            console.log("Department name: " + this.name);
+        };
+        return Department;
+    }());
+    var AccountingDepartment = /** @class */ (function (_super) {
+        __extends(AccountingDepartment, _super);
+        function AccountingDepartment() {
+            return _super.call(this, 'Accounting and Auditing') || this;
+        }
+        AccountingDepartment.prototype.printMeeting = function () {
+            console.log('The Accounting Department meets each Monday at 10am.');
+        };
+        AccountingDepartment.prototype.generateReports = function () {
+            console.log('Generating accounting reports...');
+        };
+        return AccountingDepartment;
+    }(Department));
+    var department = void 0;
+    console.log(department);
+    department = new AccountingDepartment();
+    console.log(department);
+    department.printName();
+    department.printMeeting();
+    // department.generateReports()
+    // 错误: 方法在声明的抽象类中不存在
 }
